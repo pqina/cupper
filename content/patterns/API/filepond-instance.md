@@ -116,6 +116,7 @@ The FilePond core module exposes the following properties.
 
 | Property              | Function                  | Description                                                                                                                                                        |
 | --------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| beforeDropFile        | `(file)`                  | FilePond is about to allow this item to be dropped, it can be a URL or a File object. Return `true` or `false` depending on if you want to allow the item to be dropped. |
 | beforeAddFile         | `(item)`                  | FilePond is about to add this file, return `false` to prevent adding it, or return a `Promise` and resolve with `true` or `false`.                                |
 | beforeRemoveFile      | `(item)`                  | FilePond is about to remove this file, return `false` to prevent removal, or return a `Promise` and resolve with `true` or `false`.                                |
 
@@ -131,6 +132,7 @@ The FilePond core module exposes the following properties.
 | styleLoadIndicatorPosition | `'right`             | The position of the load indicator, `'left'`, `'center'`, `'right'`, and/or `'bottom'`. |
 | styleProgressIndicatorPosition | `'right`         | The position of the progress indicator, `'left'`, `'center'`, `'right'`, and/or `'bottom'`. |
 | styleItemPanelAspectRatio | `null` | Set a forced aspect ratio for the file items. Useful when rendering cropped or fixed aspect ratio images in grid view, this will improve performance as FilePond will know beforehand the size of the item to render. |
+
 
 ## Events
 
