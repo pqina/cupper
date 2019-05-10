@@ -15,8 +15,14 @@ The [Image preview](../image-preview) plugin uses this information to show the c
 Now we can add the Image Crop plugin to our project like this.
 
 ```js
+// Import FilePond
+import * as FilePond from 'filepond';
+
 // Import the plugin code
 import FilePondPluginImageCrop from 'filepond-plugin-image-crop';
+
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginImageCrop);
 ```
 
 
@@ -28,6 +34,9 @@ import FilePondPluginImageCrop from 'filepond-plugin-image-crop';
 <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
 
 <script>
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginImageCrop);
+
 // ... FilePond initialisation code here
 </script>
 ```
@@ -40,6 +49,9 @@ import FilePondPluginImageCrop from 'filepond-plugin-image-crop';
 <script src="filepond.js"></script>
 
 <script>
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginImageCrop);
+
 // ... FilePond initialisation code here
 </script>
 ```

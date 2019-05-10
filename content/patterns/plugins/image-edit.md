@@ -22,11 +22,17 @@ Please note that the image edit plugin requires the [Image preview](../image-pre
 Now we can add the Image Edit plugin to our project like this.
 
 ```js
+// Import FilePond
+import * as FilePond from 'filepond';
+
 // Import the plugin code
 import FilePondPluginImageEdit from 'filepond-plugin-image-edit';
 
 // Import the plugin styles
 import 'filepond-plugin-image-edit/dist/filepond-plugin-image-edit.css';
+
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginImageEdit);
 ```
 
 {{% note %}}
@@ -46,6 +52,9 @@ If a module bundler ( like Webpack ) is not available, the plugin CSS file will 
 <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
 
 <script>
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginImageEdit);
+
 // ... FilePond initialisation code here
 </script>
 ```
@@ -62,6 +71,9 @@ If a module bundler ( like Webpack ) is not available, the plugin CSS file will 
 <script src="filepond.js"></script>
 
 <script>
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginImageEdit);
+
 // ... FilePond initialisation code here
 </script>
 ```

@@ -16,8 +16,14 @@ The [Image preview](../image-preview) plugin uses this information to show the c
 Now we can add the Image Resize plugin to our project like this.
 
 ```js
+// Import FilePond
+import * as FilePond from 'filepond';
+
 // Import the plugin code
 import FilePondPluginImageResize from 'filepond-plugin-image-resize';
+
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginImageResize);
 ```
 
 
@@ -29,6 +35,9 @@ import FilePondPluginImageResize from 'filepond-plugin-image-resize';
 <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
 
 <script>
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginImageResize);
+
 // ... FilePond initialisation code here
 </script>
 ```
@@ -41,6 +50,9 @@ import FilePondPluginImageResize from 'filepond-plugin-image-resize';
 <script src="filepond.js"></script>
 
 <script>
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginImageResize);
+
 // ... FilePond initialisation code here
 </script>
 ```

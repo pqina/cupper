@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run serve",
     "serve": "hugo server --baseURL http://localhost:1313",
     "clean": "node lib/clean.js",
     "build": "node lib/build.js",

@@ -16,8 +16,14 @@ When creating a FilePond instance based on a input type file, this plugin will a
 Now we can add the File Validate Type plugin to our project like this.
 
 ```js
+// Import FilePond
+import * as FilePond from 'filepond';
+
 // Import the plugin code
 import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
+
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginFileValidateType);
 ```
 
 
@@ -29,6 +35,9 @@ import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
 <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
 
 <script>
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginFileValidateType);
+
 // ... FilePond initialisation code here
 </script>
 ```
@@ -41,6 +50,9 @@ import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
 <script src="filepond.js"></script>
 
 <script>
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginFileValidateType);
+
 // ... FilePond initialisation code here
 </script>
 ```

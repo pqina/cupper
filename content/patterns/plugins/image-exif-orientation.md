@@ -19,8 +19,14 @@ As other plugins use the information read by the EXIF orientation plugin please 
 Now we can add the Image EXIF Orientation plugin to our project like this.
 
 ```js
+// Import FilePond
+import * as FilePond from 'filepond';
+
 // Import the plugin code
 import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
+
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginImageExifOrientation);
 ```
 
 
@@ -32,6 +38,9 @@ import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orien
 <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
 
 <script>
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginImageExifOrientation);
+
 // ... FilePond initialisation code here
 </script>
 ```
@@ -44,6 +53,9 @@ import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orien
 <script src="filepond.js"></script>
 
 <script>
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginImageExifOrientation);
+
 // ... FilePond initialisation code here
 </script>
 ```

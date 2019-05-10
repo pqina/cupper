@@ -14,8 +14,14 @@ The Image transform plugin applies the image modifications supplied by the [Imag
 Now we can add the Image Transform plugin to our project like this.
 
 ```js
+// Import FilePond
+import * as FilePond from 'filepond';
+
 // Import the plugin code
 import FilePondPluginImageTransform from 'filepond-plugin-image-transform';
+
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginImageTransform);
 ```
 
 
@@ -27,6 +33,9 @@ import FilePondPluginImageTransform from 'filepond-plugin-image-transform';
 <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
 
 <script>
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginImageTransform);
+
 // ... FilePond initialisation code here
 </script>
 ```
@@ -39,6 +48,9 @@ import FilePondPluginImageTransform from 'filepond-plugin-image-transform';
 <script src="filepond.js"></script>
 
 <script>
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginImageTransform);
+
 // ... FilePond initialisation code here
 </script>
 ```

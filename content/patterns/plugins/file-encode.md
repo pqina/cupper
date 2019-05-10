@@ -52,8 +52,14 @@ Submitting forms with very large base64 encoded strings can result in browsers r
 Now we can add the File Encode plugin to our project like this.
 
 ```js
+// Import FilePond
+import * as FilePond from 'filepond';
+
 // Import the plugin code
 import FilePondPluginFileEncode from 'filepond-plugin-file-encode';
+
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginFileEncode);
 ```
 
 
@@ -65,6 +71,9 @@ import FilePondPluginFileEncode from 'filepond-plugin-file-encode';
 <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
 
 <script>
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginFileEncode);
+
 // ... FilePond initialisation code here
 </script>
 ```
@@ -77,6 +86,9 @@ import FilePondPluginFileEncode from 'filepond-plugin-file-encode';
 <script src="filepond.js"></script>
 
 <script>
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginFileEncode);
+
 // ... FilePond initialisation code here
 </script>
 ```

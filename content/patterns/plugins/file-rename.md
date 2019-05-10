@@ -14,8 +14,14 @@ The File Rename plugin allows us to rename files before they are added to FilePo
 Now we can add the File Rename plugin to our project like this.
 
 ```js
+// Import FilePond
+import * as FilePond from 'filepond';
+
 // Import the plugin code
 import FilePondPluginFileRename from 'filepond-plugin-file-rename';
+
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginFileRename);
 ```
 
 
@@ -27,6 +33,9 @@ import FilePondPluginFileRename from 'filepond-plugin-file-rename';
 <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
 
 <script>
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginFileRename);
+
 // ... FilePond initialisation code here
 </script>
 ```
@@ -39,6 +48,9 @@ import FilePondPluginFileRename from 'filepond-plugin-file-rename';
 <script src="filepond.js"></script>
 
 <script>
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginFileRename);
+
 // ... FilePond initialisation code here
 </script>
 ```

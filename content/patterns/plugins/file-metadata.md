@@ -16,8 +16,14 @@ Add metadata by setting a generic `fileMetadataObject` to the FilePond object or
 Now we can add the File Metadata plugin to our project like this.
 
 ```js
+// Import FilePond
+import * as FilePond from 'filepond';
+
 // Import the plugin code
 import FilePondPluginFileMetadata from 'filepond-plugin-file-metadata';
+
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginFileMetadata);
 ```
 
 
@@ -29,6 +35,9 @@ import FilePondPluginFileMetadata from 'filepond-plugin-file-metadata';
 <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
 
 <script>
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginFileMetadata);
+
 // ... FilePond initialisation code here
 </script>
 ```
@@ -41,6 +50,9 @@ import FilePondPluginFileMetadata from 'filepond-plugin-file-metadata';
 <script src="filepond.js"></script>
 
 <script>
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginFileMetadata);
+
 // ... FilePond initialisation code here
 </script>
 ```

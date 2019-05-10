@@ -13,8 +13,14 @@ The Image Size Validation plugin handles blocking of image that are either too s
 Now we can add the File Validate Type plugin to our project like this.
 
 ```js
+// Import FilePond
+import * as FilePond from 'filepond';
+
 // Import the plugin code
 import FilePondPluginImageValidateSize from 'filepond-plugin-image-validate-size';
+
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginImageValidateSize);
 ```
 
 
@@ -26,6 +32,9 @@ import FilePondPluginImageValidateSize from 'filepond-plugin-image-validate-size
 <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
 
 <script>
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginImageValidateSize);
+
 // ... FilePond initialisation code here
 </script>
 ```
@@ -38,6 +47,9 @@ import FilePondPluginImageValidateSize from 'filepond-plugin-image-validate-size
 <script src="filepond.js"></script>
 
 <script>
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginImageValidateSize);
+
 // ... FilePond initialisation code here
 </script>
 ```

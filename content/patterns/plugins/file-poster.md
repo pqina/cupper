@@ -16,11 +16,17 @@ Add a `poster` property to a file metadata object and set an image URL as its va
 Now we can add the File Poster plugin to our project like this.
 
 ```js
+// Import FilePond
+import * as FilePond from 'filepond';
+
 // Import the plugin code
 import FilePondPluginFilePoster from 'filepond-plugin-file-poster';
 
 // Import the plugin styles
 import 'filepond-plugin-file-poster/dist/filepond-plugin-file-poster.css';
+
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginFilePoster);
 ```
 
 
@@ -36,6 +42,9 @@ import 'filepond-plugin-file-poster/dist/filepond-plugin-file-poster.css';
 <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
 
 <script>
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginFilePoster);
+
 // ... FilePond initialisation code here
 </script>
 ```
@@ -52,6 +61,9 @@ import 'filepond-plugin-file-poster/dist/filepond-plugin-file-poster.css';
 <script src="filepond.js"></script>
 
 <script>
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginFilePoster);
+
 // ... FilePond initialisation code here
 </script>
 ```

@@ -23,6 +23,9 @@ The Image Edit plugin files are only available from the [Premium plugin store](h
 Premium plugins aren't available on npm. You can put the esm file in a directory relative to your project and import the plugin like this.
 
 ```js
+// Import FilePond
+import * as FilePond from 'filepond';
+
 // Import the plugin code (we also need the preview plugin)
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import FilePondPluginImageEdit from './filepond-plugin-image-edit.esm.min.js';
@@ -30,6 +33,9 @@ import FilePondPluginImageEdit from './filepond-plugin-image-edit.esm.min.js';
 // Import the plugin styles (we also need the preview plugin)
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 import './filepond-plugin-image-edit.min.css';
+
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginImagePreview, FilePondPluginImageEdit);
 ```
 
 ### Manual installation

@@ -9,9 +9,14 @@ The server API endpoints can be configured with the `server` property. Only afte
 
 We'll first go over the different end points and what they do before discussing how to configure them.
 
+
 ### Process
 
 Asynchronously uploading files with FilePond is called processing. In short, FilePond sends a file to the server and expects the server to return a unique file id. This unique id is then used to revert uploads or restore earlier uploads later on.
+
+{{%note%}}
+Along with the file object, FilePond also sends the file metadata to the server, both these objects are given the same `name`.
+{{%/note%}}
 
 The upload process described over time:
 
@@ -25,6 +30,7 @@ The upload process described over time:
 {{%note%}}
 FilePond uses unique file ids to prevent showing information about the server file structure to the client. Storing files in a temporary folder will also make chunk uploading a possibility in the near future.
 {{%/note%}}
+
 
 ### Revert
 

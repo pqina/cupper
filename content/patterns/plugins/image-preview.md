@@ -19,11 +19,17 @@ Dropping really big images might impact performance. Browsers that support [`cre
 Now we can add the Image Preview plugin to our project like this.
 
 ```js
+// Import FilePond
+import * as FilePond from 'filepond';
+
 // Import the plugin code
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 
 // Import the plugin styles
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
+
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginImagePreview);
 ```
 
 {{% note %}}
@@ -43,6 +49,9 @@ If a module bundler ( like Webpack ) is not available, the plugin CSS file will 
 <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
 
 <script>
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginImagePreview);
+
 // ... FilePond initialisation code here
 </script>
 ```
@@ -59,6 +68,9 @@ If a module bundler ( like Webpack ) is not available, the plugin CSS file will 
 <script src="filepond.js"></script>
 
 <script>
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginImagePreview);
+
 // ... FilePond initialisation code here
 </script>
 ```
