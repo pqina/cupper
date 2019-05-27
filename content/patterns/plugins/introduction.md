@@ -31,3 +31,4 @@ Plugins can be registered with FilePond using the `registerPlugin` method. Read 
 | [Image Transform](../image-transform)               | filepond-plugin-image-transform        | Apply image transforms on the client before uploading                                          |
 | [Image EXIF Orientation](../image-exif-orientation) | filepond-plugin-image-exif-orientation | Extracts EXIF orientation information so to fix orientation of pictures taken on mobile phones |
 | [Image Size Validation](../image-validate-size)     | filepond-plugin-image-validate-size    | Limit the dimensions of the images being added |
+| [Image Size Validation](../image-filter)     | filepond-plugin-image-filter    | Apply a color matrix to image pixels  |
