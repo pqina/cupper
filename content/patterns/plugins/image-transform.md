@@ -73,10 +73,80 @@ FilePond.create({
             return transforms;
         }
     }
-})
+});
 ```
 
 Instead of a single file, the transform plugin will now pass an array of files to the FilePond file processing method. The name of each file will be prefixed with the name of the transform variant.
+
+
+## Using Before and After Create Blob
+
+The `imageTransformBeforeCreateBlob` and `imageTransformAfterCreateBlob` hooks are useful to make changes to the data without having to exit FilePond.
+
+```js
+FilePond.create({
+    imageResizeTargetWidth: 600,
+    imageCropAspectRatio: 1,
+    imageTransformBeforeCreateBlob: (canvas) => new Promise(resolve => {
+
+        // Do something with the canvas, like drawing some text on it
+        const ctx = canvas.getContext('2d');
+        ctx.font = '48px serif';
+        ctx.fillText('Hello world', 10, 50);
+
+        // return canvas to the plugin for further processing
+        resolve(canvas);
+    }),
+    imageTransformAfterCreateBlob: (blob) => new Promise(resolve => {
+        // do something with the blob, for instance send it to a custom compression alogrithm
+        
+
+        // return the blob to the plugin for further processing
+        resolve(blob);
+    })
+});
+```
+
+
+## Adding Markup to Images
+
+The image transform plugin can render markup on top of images. Here we use the [metadata plugin](../file-metadata) to define a watermark to be placed in the bottom right of dropped images.
+
+[Live demo](https://pqina.github.io/filepond-plugin-image-transform/)
+
+```js
+FilePond.create({
+    fileMetadataObject: {
+        'markup': [
+            [
+                'rect', {
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    height: '60px',
+                    backgroundColor: 'rgba(0,0,0,.5)'
+                },
+            ],
+            [
+                'image', {
+                    right: '10px',
+                    bottom: '10px',
+                    width: '128px',
+                    height: '34px',
+                    src: './filepond-logo.svg',
+                    fit: 'contain'
+                }
+            ]
+        ]
+    },
+    onpreparefile: (file, output) => {
+        const img = new Image();
+        img.src = URL.createObjectURL(output);
+        document.body.appendChild(img);
+    }
+});
+```
+
 
 ## Properties
 
@@ -93,3 +163,6 @@ Instead of a single file, the transform plugin will now pass an array of files t
 | imageTransformVariantsDefaultName | `null` | The name to use in front of the file name. |
 | imageTransformVariantsIncludeOriginal | `false` | Should the transform plugin output the original file. |
 | imageTransformVariantsOriginalName | `null` | The name to use in front of the original file name. |
+| imageTransformBeforeCreateBlob | `null` | A hook to make changes to the canvas before the file is created. |
+| imageTransformAfterCreateBlob | `null` | A hook to make changes to the file after the file has been created. |
+| imageTransformCanvasMemoryLimit | `isBrowser && isIOS ? 4096 * 4096 : null` | A memory limit to make sure the canvas can be used correctly when rendering the image. By default this is only active on iOS. |
