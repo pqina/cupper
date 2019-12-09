@@ -45,9 +45,13 @@ The FilePond core module exposes the following properties.
 
 | Property      | Default | Description                                                                                                                     |
 | ------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| server        | `null`  | [Server API configuration](../server)                                                                                           |
-| instantUpload | `true`  | Immediately upload new files to the server                                                                                      |
 | files         | `[]`    | A list of file locations that should be loaded Immediately, read more about [setting the initial files](../filepond-object/#setting-initial-files) |
+| instantUpload | `true`  | Immediately upload new files to the server                                                                                      |
+| server        | `null`  | [Server API configuration](../server)                                                                                           |
+| chunkUploads  | `false` | Enable chunked uploads, when enabled will automatically cut up files in `chunkSize` chunks before upload | 
+| chunkForce    | `false` | Force chunks even for files smaller than the set `chunkSize` | 
+| chunkSize        | `5000000`           | The size of a chunk in bytes | 
+| chunkRetryDelays | `[500, 1000, 3000]` | Amount of times, and delayes, between retried uploading of a chunk | 
 
 
 ### Labels
@@ -161,6 +165,7 @@ pond.addEventListener('FilePond:addfile', e => {
 | FilePond:removefile          | File has been removed                                                                                                                                              |
 | FilePond:updatefiles         | A file has been added or removed
 
+
 ## Methods
 
 | Method                            | Params               | Description                                           |
@@ -169,14 +174,17 @@ pond.addEventListener('FilePond:addfile', e => {
 | [addFile](#adding-files)          | `source [, options]` | Adds a file                                           |
 | [addFiles](#adding-files)         | `source [, options]` | Adds multiple files                                   |
 | [removeFile](#removing-files)     | `query`              | Removes the file matching the given `query`           |
-| [removeFiles](#removing-files)    |                      | Removes all files                                     |
+| [removeFiles](#removing-files)    | `[query]`            | Removes all files or files matching the query                                    |
 | [processFile](#processing-files)  | `query`              | Starts processing the file matching the given `query` |
-| [processFiles](#processing-files) |                      | Starts processing all files                           |
+| [processFiles](#processing-files) | `[query]`            | Starts processing all files or files matching the query                          |
+| prepareFile                       | `query`              | Starts preparing the file matching the given `query`, returns a Promise, the Promise is resolved with the file item and the output file `{ file, output }` |
+| prepareFiles                      | `[query]`            | Starts preparing all output files or files matching the query, returns a Promise, the Promise is resolved with an array of file prepare output objects `{ file, output }`                          |
 | [getFile](#getting-files)         | `query`              | Returns the file matching the supplied `query`        |
 | [getFiles](#getting-files)        |                      | Returns all files                                     |
-| [browse](#opening-the-file-browser)                            |                      | Opens the browse file dialog, please note that this only works if the user initiaded the callstack that ends up calling the `browse` method. |
-| [sort]($sorting-files) | `compare` | Sorts files in the list using the supplied compare function |
+| [browse](#opening-the-file-browser) |                    | Opens the browse file dialog, please note that this only works if the user initiaded the callstack that ends up calling the `browse` method. |
+| [sort]($sorting-files)            | `compare`            | Sorts files in the list using the supplied compare function |
 | destroy                           |                      | Destroys this FilePond instance                       |
+
 
 #### DOM manipulation
 

@@ -5,14 +5,14 @@ weight = 5
 
 ## Introduction
 
-The server API endpoints can be configured with the `server` property. Only after these have been configured can FilePond upload files to a server using XMLHttpRequest.
+The server API endpoints can be configured with the `server` property. Only after these have been configured can FilePond upload files to a server using `XMLHttpRequest`.
 
 We'll first go over the different end points and what they do before discussing how to configure them.
 
 
 ### Process
 
-Asynchronously uploading files with FilePond is called processing. In short, FilePond sends a file to the server and expects the server to return a unique file id. This unique id is then used to revert uploads or restore earlier uploads later on.
+Asynchronously uploading files with FilePond is called processing. In short, FilePond sends a file to the server and expects the server to return a unique file id. This unique id is then used to revert uploads or restore earlier uploads.
 
 {{%note%}}
 Along with the file object, FilePond also sends the file metadata to the server, both these objects are given the same `name`.
@@ -28,8 +28,51 @@ The upload process described over time:
 6. **server** uses the unique id to move `tmp/12345/my-file.jpg` to its final location and remove the `tmp/12345` folder
 
 {{%note%}}
-FilePond uses unique file ids to prevent showing information about the server file structure to the client. Storing files in a temporary folder will also make chunk uploading a possibility in the near future.
+FilePond uses unique file ids to prevent showing information about the server file structure to the client.
 {{%/note%}}
+
+### Process Chunks
+
+To process files in chunks set `chunkUploads` to `true`.
+
+FilePond will then slice up files bigger than the set `chunkSize` into parts.
+
+Custom headers used in requests
+
+| header        | value           |
+| ------------- | --------------- |
+| Upload-Length | The total size of the file being transferred |
+| Upload-Name   | The name of the file being transferred |
+| Upload-Offset | The offset of the chunk being transferred | 
+| Content-Type  | The content type of a patch request, set to `'application/offset+octet-stream'` |
+
+In short: 
+
+- FilePond will send a `POST` request (without file) to start a chunked transfer, expecting to receive a unique transfer id in the response body, it'll add the `Upload-Length` header to this request.
+- FilePond will send a `PATCH` request to push a chunk to the server. Each of these requests is accompanied by a `Content-Type`, `Upload-Offset`, `Upload-Name`, and `Upload-Length` header.
+- FilePond will send a `HEAD` request to determine which chunks have already been uploaded, expecting the file offset of the next expected chunk in the `Upload-Offset` response header.
+
+
+In detail:
+
+1. **FilePond** requests a transfer id from the server, a unique location to identify this transfer with. It does this using a `POST` request. The request is accompanied by the metadata and the total file upload size set to the `Upload-Length` header.
+2. **server** create unique location `tmp/12345/`
+3. **server** returns unique location id `12345` in `text/plain` response
+4. **FilePond** stores unique id `12345` in file item
+5. **FilePond** sends first chunk using a `PATCH` request adding the unique id `12345` in the URL, each `PATCH` request is accompanied by a `Upload-Offset`, `Upload-Length`, and `Upload-Name` header. The `Upload-Offset` header contains the byte offset of the chunk, the `Upload-Length` header contains the total file size, the `Upload-Name` header contains the file name.
+6. **FilePond** sends chunks until all chunks have been uploaded succesfully.
+7. **server** creates the file if all chunks have been received succesfully.
+7. **FilePond** stores the unique id `12345` as the server id of this file.
+5. **client** submits the FilePond parent form containing the hidden input field with the unique id
+6. **server** uses the unique id to move `tmp/12345/my-file.jpg` to its final location and remove the `tmp/12345` folder
+
+If one of the chunks fails to upload after the set amount of retries in `chunkRetryDelays` the user has the option to retry the upload.
+
+1. **FilePond** As FilePond remembers the previous transfer id the process now starts of with a `HEAD` request accompanied by the transfer id (`12345`) in the URL.
+2. **server** responds with `Upload-Offset` set to the next expected chunk offset in bytes.
+3. **FilePond** marks all chunks with lower offsets as complete and continues with uploading the chunk at the requested offset.
+
+Everything continues like normal.
 
 
 ### Revert
@@ -100,13 +143,14 @@ FilePond.setOptions({
 
 This tells FilePond the api is located at the same location as the current page. It will then assume it can call all methods on this url. Like shown below.
 
-| method  | type   | path          |
-| ------- | ------ | ------------- |
-| process | POST   |               |
-| revert  | DELETE |               |
-| load    | GET    | ?load=<source>|
-| restore | GET    | ?restore=<id> |
-| fetch   | GET|HEAD    | ?fetch=<url>  |
+| method  | type        | path           |
+| ------- | ----------- | -------------- |
+| process | POST        |                |
+| revert  | DELETE      |                |
+| load    | GET         | ?load=<source> |
+| restore | GET         | ?restore=<id>  |
+| fetch   | GET|HEAD    | ?fetch=<url>   |
+| patch   | PATCH       | ?patch=<id>    |
 
 We can of course supply a path or URL to another location, FilePond will simply append the above default paths to the supplied value. If we want more fine grained control we can use an object to configure the server end points.
 
@@ -183,7 +227,7 @@ FilePond.setOptions({
 | url             | Path to the end point                                | yes      |
 | method          | Request method to use                                | no       |
 | withCredentials | Toggles the XMLHttpRequest withCredentials on or off | no       |
-| headers         | An object containing additional headers to send      | no       |
+| headers         | An object containing additional headers to send, or when uploading chunks this can be a function that is expected to return a header object      | no       |
 | timeout         | Timeout for this action                              | no       |
 | onload          | Called when server response is received, useful for getting the unique file id from the server response | no |
 | onerror         | Called when server error is received, receives the response body, useful to select the relevant error data | no |
@@ -242,10 +286,14 @@ Note that in the examples below we make use of [arrow functions](https://develop
 
 The custom `process` function receives a `file` object plus a set of FilePond callback methods to return control to FilePond. The `file` parameter contains the native file object (instead of a FilePond file item) access the file item is restricted in the `process` function to prevent setting properties or running functions that would would contradict or interfere with the current processing of the file.
 
+{{%note%}}
+The `transfer` and `options` parameters are only to be used when uploading chunks. Use `transfer` to return the transfer id to FilePond, the `options` parameter contains the chunk related options.
+{{%/note%}}
+
 ```js
 FilePond.setOptions({
     server: {
-        process:(fieldName, file, metadata, load, error, progress, abort) => {
+        process:(fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
 
             // fieldName is the name of the input field
             // file is the actual file object to send
@@ -292,6 +340,7 @@ FilePond.setOptions({
 });
 ```
 
+
 ### Revert
 
 Custom revert methods receive the unique server file id and a load and error callback.
@@ -313,6 +362,7 @@ FilePond.setOptions({
     }
 });
 ```
+
 
 ### Load
 
@@ -353,6 +403,7 @@ FilePond.setOptions({
 });
 ```
 
+
 ### Fetch
 
 The custom fetch method receives the `url` to fetch and a set of FilePond callback methods to return control to FilePond.
@@ -391,6 +442,7 @@ FilePond.setOptions({
     }
 });
 ```
+
 
 ### Restore
 
@@ -431,6 +483,7 @@ FilePond.setOptions({
 });
 ```
 
+
 ### Remove
 
 The custom remove method receives the local file `source` and a `load` and `error` callback.
@@ -455,6 +508,7 @@ FilePond.setOptions({
     }
 });
 ```
+
 
 ## Conclusion
 

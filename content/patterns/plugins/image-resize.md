@@ -6,6 +6,7 @@ The Image resize plugin automatically calculates and adds resize information.
 
 The [Image preview](../image-preview) plugin uses this information to show the correct preview. The [Image transform](../image-transform) plugin uses this information to transform the image before uploading it to the server.
 
+You can combine the image resize plugin with the [Doka Image Editor](https://pqina.nl/doka/?ref=filepond) to offer image manipulation capabilities to your users.
 
 ## Installation
 

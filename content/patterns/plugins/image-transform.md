@@ -4,6 +4,7 @@ title = "Image transform"
 
 The Image transform plugin applies the image modifications supplied by the [Image crop](../image-crop) and [Image resize](../image-resize) plugins before the image is uploaded. It can also change the file format to either JPEG or PNG.
 
+You can combine the image transform plugin with the [Doka Image Editor](https://pqina.nl/doka/?ref=filepond) to offer image manipulation capabilities to your users.
 
 ## Installation
 

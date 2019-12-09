@@ -6,7 +6,7 @@ title = "Image edit"
 Documentation for the deprecated [FilePond Image Editor plugin can be found here](../image-edit-deprecated).
 {{% /note %}}
 
-The Image Edit plugin allows integration of image editing libraries like [Doka.js](https://pqina.nl/doka) to make modifications to image files loaded in FilePond.
+The Image Edit plugin allows integration of image editing libraries like [Doka](https://pqina.nl/doka/) to make modifications to image files loaded in FilePond.
 
 The [Image preview](../image-preview) plugin will automatically updated based on the changes made. If registered, the [Image transform](../image-transform) plugin will automatically apply any changes made to the file object.
 
