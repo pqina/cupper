@@ -24,6 +24,7 @@ The FilePond core module exposes the following properties.
 | allowMultiple | `false`      | Enable or disable adding multiple files                                                  |
 | allowReplace  | `true`       | Allow drop to replace a file, only works when `allowMultiple` is `false`                 |
 | allowRevert   | `true`       | Allows the user to revert file upload |
+| allowReorder  | `false`      | Allow users to reorder files with drag and drop interaction |
 | forceRevert   | `false`      | Set to `true` to require the file to be successfully reverted before continuing |
 | maxFiles      | `null`       | The maximum number of files that the pond can handle                                     |
 | maxParallelUploads | `null`  | The maxmimum number of files that can be uploaded in parallel |
@@ -183,6 +184,7 @@ pond.addEventListener('FilePond:addfile', e => {
 | [getFiles](#getting-files)        |                      | Returns all files                                     |
 | [browse](#opening-the-file-browser) |                    | Opens the browse file dialog, please note that this only works if the user initiaded the callstack that ends up calling the `browse` method. |
 | [sort]($sorting-files)            | `compare`            | Sorts files in the list using the supplied compare function |
+| moveFile                          | `query, index`       | Moves the files to a new index in the files array
 | destroy                           |                      | Destroys this FilePond instance                       |
 
 
