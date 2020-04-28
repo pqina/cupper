@@ -24,7 +24,7 @@ The FilePond core module exposes the following properties.
 | allowMultiple | `false`      | Enable or disable adding multiple files                                                  |
 | allowReplace  | `true`       | Allow drop to replace a file, only works when `allowMultiple` is `false`                 |
 | allowRevert   | `true`       | Allows the user to revert file upload |
-| allowReorder  | `false`      | Allow users to reorder files with drag and drop interaction |
+| allowReorder  | `false`      | Allow users to reorder files with drag and drop interaction. Note that this only works in single column mode. It also only works on browsers that support pointer events. |
 | forceRevert   | `false`      | Set to `true` to require the file to be successfully reverted before continuing |
 | maxFiles      | `null`       | The maximum number of files that the pond can handle                                     |
 | maxParallelUploads | `null`  | The maxmimum number of files that can be uploaded in parallel |
@@ -115,6 +115,7 @@ The FilePond core module exposes the following properties.
 | onpreparefile         | `(file, output)`          | File has been transformed by the transform plugin or another plugin subscribing to the prepare_output filter. It receives the file item and the output data.       |                                                                                                                                        |
 | onupdatefiles         | `(files)`                 | A file has been added or removed, receives a list of file items |
 | onactivatefile        | `(file)`                  | Called when a file is clicked or tapped |
+| onreorderfiles        | `(files)`                 | Called when the files list has been reordered |
 
 
 ### Hooks
