@@ -60,6 +60,7 @@ FilePond.registerPlugin(FilePondPluginFileValidateSize);
 Property | Default | Description
 ---------|---------|---------
 allowFileSizeValidation | `true` | Enable or disable file size validation
+minFileSize | `null` | The minimum size of a file, for instance `5MB` or `750KB`
 maxFileSize | `null` | The maximum size of a file, for instance `5MB` or `750KB`
 maxTotalFileSize | `null` | Maximum size of all files in list, same format as `maxFileSize`
 labelMaxFileSizeExceeded | `'File is too large'` | Status message shown when large file is dropped.
