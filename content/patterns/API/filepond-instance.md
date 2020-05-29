@@ -102,6 +102,7 @@ The FilePond core module exposes the following properties.
 | oninit                | `()`                      | FilePond instance has been created and is ready.                                                                                                                   |
 | onwarning             | `(error[, file, status])` | FilePond instance throws a warning. For instance when the maximum amount of files has been reached. Optionally receives file if error is related to a file object. |
 | onerror               | `(error[, file, status])` | FilePond instance throws an error. Optionally receives file if error is related to a file object.                                                                  |
+| oninitfile            | `(file)`                  | Created file item
 | onaddfilestart        | `(file)`                  | Started file load                                                                                                                                                  |
 | onaddfileprogress     | `(file, progress)`        | Made progress loading a file                                                                                                                                       |
 | onaddfile             | `(error, file)`           | If no error, file has been succesfully loaded                                                                                                                      |

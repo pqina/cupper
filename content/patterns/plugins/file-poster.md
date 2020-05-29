@@ -107,3 +107,5 @@ const pond = FilePond.create({
 Property | Default | Description
 ---------|---------|---------
 allowFilePoster | `true` | Enable or disable the file poster functionality
+filePosterFilterItem | `() => true` | Receives file item, return true to ignore file
+filePosterCrossOriginAttributeValue | `Anonymous` | Cross origin value to set to poster image element
