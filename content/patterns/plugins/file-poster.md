@@ -107,5 +107,8 @@ const pond = FilePond.create({
 Property | Default | Description
 ---------|---------|---------
 allowFilePoster | `true` | Enable or disable the file poster functionality
+filePosterMinHeight | `null` | Minimum poster height
+filePosterMaxHeight | `null` | Maximum poster height
+filePosterHeight | `null` | Fixed poster height, overrides min and max preview height
 filePosterFilterItem | `() => true` | Receives file item, return true to ignore file
 filePosterCrossOriginAttributeValue | `Anonymous` | Cross origin value to set to poster image element
