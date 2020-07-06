@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="canonical" href="{{ .Permalink }}">
     <link rel="apple-touch-icon" sizes="57x57" href="{{ "images/apple-touch-icon-57x57.png" | absURL }}">
     <link rel="apple-touch-icon" sizes="60x60" href="{{ "images/apple-touch-icon-60x60.png" | absURL }}">
@@ -22,9 +21,9 @@
     <meta name="msapplication-TileImage" content="{{ "images/ms-icon-144x144.png" | absURL }}">
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="{{ "css/prism.css" | absURL }}" media="none" onload="this.media='all';">
-    <link rel="stylesheet" type="text/css" href="{{ "css/styles.css" | absURL }}">
+    <link rel="stylesheet" type="text/css" href="{{ "css/styles.css" | absURL }}?bust=1">
     {{ range .Site.Params.stylesheets -}}
-        <link rel="stylesheet" type="text/css" href="{{ . | absURL }}">
+        <link rel="stylesheet" type="text/css" href="{{ . | absURL }}?bust=1">
     {{- end }}
     <style id="inverter" media="none">
       html { filter: invert(100%) }
@@ -44,6 +43,7 @@
     {{ if ne .Type "print-version" }}
       <a href="#main">skip to content</a>
     {{ end }}
+    <div id="blm"><a href="https://blacklivesmatter.com" target="_blank" rel="noreferrer">#BlackLivesMatter</a> <a href="https://eji.org/" target="_blank" rel="noreferrer">Support the Equal Justice Initiative</a></div>
     {{ partial "svg.html" . }}
     <div class="wrapper {{ if eq .Type "print-version" }}print-version{{ end }}">
         <header class="intro-and-nav" role="banner">
@@ -134,8 +134,5 @@
     </div>
     <script src="{{ "js/prism.js" | absURL }}"></script>
     <script src="{{ "js/dom-scripts.js" | absURL }}"></script>
-    {{ if .Page.IsHome }}
-      <script src="{{ "js/service-worker-registration.js" | absURL }}"></script>
-    {{ end }}
   </body>
 </html>

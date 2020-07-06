@@ -1,4 +1,55 @@
 
+/* BLM */
+#blm {
+    position: fixed;
+    background: #202122;
+    color: #fff;
+    margin: 0;
+    width: 100%;
+    z-index: 1;
+    padding: .5em;
+    font-size: .8125rem;
+    text-align: center;
+}
+
+#blm a {
+    text-decoration: none;
+    margin: 0 .25em;
+}
+
+#blm a:first-of-type {
+    font-weight: bold;
+    font-family: Nunito,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+}
+
+#blm a:last-of-type {
+    color: #1de4cb;
+    background: linear-gradient(to bottom right,#1de4cb,#0eb8ee);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#blm ~ .wrapper {
+    padding-top: 2em;
+}
+
+#blm ~ .wrapper .intro-and-nav {
+    top: 2em;
+}
+
+@media (max-width: 30em) {
+    #blm a:first-of-type {
+        font-size: 0rem;
+        width: 3em;
+        overflow:hidden;
+    }
+    #blm a:first-of-type::after {
+        font-size: .8125rem;
+        content:'#BLM'
+    }
+}
+
+
 /* Default fonts*/
 html {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',

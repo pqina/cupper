@@ -116,7 +116,7 @@ The FilePond core module exposes the following properties.
 | onpreparefile         | `(file, output)`          | File has been transformed by the transform plugin or another plugin subscribing to the prepare_output filter. It receives the file item and the output data.       |                                                                                                                                        |
 | onupdatefiles         | `(files)`                 | A file has been added or removed, receives a list of file items |
 | onactivatefile        | `(file)`                  | Called when a file is clicked or tapped |
-| onreorderfiles        | `(files)`                 | Called when the files list has been reordered |
+| onreorderfiles        | `(files, origin, target)` | Called when the files list has been reordered, receives current list of files (reordered) plus file origin and target index. |
 
 
 ### Hooks
