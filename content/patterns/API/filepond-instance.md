@@ -24,6 +24,7 @@ The FilePond core module exposes the following properties.
 | allowMultiple | `false`      | Enable or disable adding multiple files                                                  |
 | allowReplace  | `true`       | Allow drop to replace a file, only works when `allowMultiple` is `false`                 |
 | allowRevert   | `true`       | Allows the user to revert file upload |
+| allowRemove   | `true`       | When set to false the remove button is hidden and disabled |
 | allowReorder  | `false`      | Allow users to reorder files with drag and drop interaction. Note that this only works in single column mode. It also only works on browsers that support pointer events. |
 | forceRevert   | `false`      | Set to `true` to require the file to be successfully reverted before continuing |
 | maxFiles      | `null`       | The maximum number of files that the pond can handle                                     |
