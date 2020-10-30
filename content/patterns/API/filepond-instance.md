@@ -461,7 +461,7 @@ pond.sort((a, b) => {
     if (a.fileSize < b.fileSize) {
         return -1;
     }
-    else if (b.fileSize > a.fileSize) {
+    else if (a.fileSize > b.fileSize) {
         return 1;
     }
 
@@ -482,7 +482,7 @@ const pond = FilePond.create({
         if (a.fileSize < b.fileSize) {
             return -1;
         }
-        else if (b.fileSize > a.fileSize) {
+        else if (a.fileSize > b.fileSize) {
             return 1;
         }
 

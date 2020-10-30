@@ -7,7 +7,7 @@ weight = 4
 
 FilePond follows a Progressive Enhancement strategy, which means that the more modern the browser the more FilePond features are supported.
 
-At the time of this writing not all browsers support dropping of external links, directories or allow pasting files. Some browsers do, those browsers will automatically unlock these functionalities for their useres.
+At the time of this writing not all browsers support dropping of external links, directories or allow pasting files. Some browsers do, those browsers will automatically unlock these functionalities for their users.
 
 To keep file size to a minimum very old browsers are not supported. We can determine if a browser is supported by calling the `FilePond.supported()` method.
 
