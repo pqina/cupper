@@ -1,6 +1,6 @@
 +++
 title = "Browser support"
-weight = 3
+weight = 4
 +++
 
 ## Progressive Enhancement

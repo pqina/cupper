@@ -1,6 +1,6 @@
 +++
 title = "Getting started"
-weight = 2
+weight = 3
 +++
 
 Ensure you've installed FilePond by following the [installation instructions](../installation) before you take these steps.

@@ -1,6 +1,6 @@
 +++
 title = "Installation"
-weight = 1
+weight = 2
 +++
 
 FilePond is exposed as a module wrapped in a UMD. It can be added to a project using Node Package Manager, from a CDN or by adding the files manually.
