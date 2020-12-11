@@ -18,6 +18,7 @@ The FilePond core module exposes the following properties.
 | required      | `false`      | Sets the required attribute to the output field                                          |
 | disabled      | `false`      | Sets the disabled attribute to the output field                                          |
 | captureMethod | `null`       | Sets the given value to the `capture` attribute                                          |
+| credits       | `{ label, url }` | Shows [Powered by PQINA](#disabling-credits) in footer |
 | allowDrop     | `true`       | Enable or disable drag n' drop                                                           |
 | allowBrowse   | `true`       | Enable or disable file browser                                                           |
 | allowPaste    | `true`       | Enable or disable pasting of files. Pasting files is not supported on all browesrs.      |
@@ -490,3 +491,17 @@ const pond = FilePond.create({
     }
 });
 ```
+
+## Disabling Credits
+
+FilePond is given to you for free.
+
+Please support the project by not removing the tiny *Powered by PQINA* footer.
+
+If you don't like the way the footer looks but still want to support FilePond, please link to https://pqina.nl somewhere else on your website. 
+
+You can also restyle the footer by adjusting the `.filepond--credits` CSS class.
+
+**Your support helps keep the project alive.**
+
+Of course you can still disable the credits message by setting the `credits` property to `false`.
