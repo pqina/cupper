@@ -257,6 +257,7 @@ console.log(pond.files); // [{ source: 'foo.jpeg' }, { source: 'bar.png' }]
 
 And this is how that HTML renders without styles. It's not super fancy, but it allows the user to upload or change his file selection, even without JavaScript.
 
+```html
 <fieldset>
 
     <legend>Files</legend>
@@ -281,6 +282,7 @@ And this is how that HTML renders without styles. It's not super fancy, but it a
     <input type="file" required multiple>
 
 </fieldset>
+```
 
 ## Destroying a FilePond instance
 
