@@ -1,3 +1,5 @@
+**Deprecated, this repository is no longer used to update the documentation**
+
 # FilePond Documentation
 
 These are the source files for the [FilePond documentation](https://pqina.nl/filepond/docs)
