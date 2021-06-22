@@ -1,4 +1,4 @@
-**Deprecated, this repository is no longer used to update the documentation**
+**Deprecated, this repository is no longer used to update the documentation, the documentation is now part of the product site.**
 
 # FilePond Documentation
 
